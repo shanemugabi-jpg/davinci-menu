@@ -30,13 +30,7 @@ button{
     border-radius:8px;
     cursor:pointer;
     font-weight:bold;
-}
-
-.cart{
-    border:2px solid #d4af37;
-    padding:20px;
-    border-radius:12px;
-    margin-top:40px;
+    margin:5px;
 }
 
 input{
@@ -48,7 +42,17 @@ input{
     border:none;
 }
 
+.cart{
+    border:2px solid #d4af37;
+    padding:20px;
+    border-radius:12px;
+    margin-top:40px;
+}
+
 .order-item{
+    border:1px solid #d4af37;
+    padding:15px;
+    border-radius:10px;
     margin-bottom:10px;
 }
 </style>
@@ -64,25 +68,19 @@ input{
 <div class="card">
 <h2>Classic Beef Burger</h2>
 <p>UGX 42,000</p>
-<button onclick="addToCart('Classic Beef Burger',42000)">
-Add to Order
-</button>
+<button onclick="addToCart('Classic Beef Burger',42000)">Add to Order</button>
 </div>
 
 <div class="card">
 <h2>Espresso Martini</h2>
 <p>UGX 35,000</p>
-<button onclick="addToCart('Espresso Martini',35000)">
-Add to Order
-</button>
+<button onclick="addToCart('Espresso Martini',35000)">Add to Order</button>
 </div>
 
 <div class="card">
 <h2>Aperol Spritz</h2>
 <p>UGX 35,000</p>
-<button onclick="addToCart('Aperol Spritz',35000)">
-Add to Order
-</button>
+<button onclick="addToCart('Aperol Spritz',35000)">Add to Order</button>
 </div>
 
 <div class="cart">
@@ -92,58 +90,86 @@ Add to Order
 
 <h3 id="total">Total: UGX 0</h3>
 
-<button onclick="sendOrder()">
-Submit Order
-</button>
+<button onclick="sendOrder()">Submit Order on WhatsApp</button>
 </div>
 
 <script>
-
 const restaurantWhatsApp = "256771753680";
 
-let cart = [];
-let total = 0;
+let cart = {};
 
 function addToCart(item, price){
+    if(cart[item]){
+        cart[item].quantity += 1;
+    } else {
+        cart[item] = {
+            price: price,
+            quantity: 1
+        };
+    }
 
-    cart.push({
-        item,
-        price
-    });
+    renderCart();
+}
 
-    total += price;
+function increaseQuantity(item){
+    cart[item].quantity += 1;
+    renderCart();
+}
+
+function decreaseQuantity(item){
+    cart[item].quantity -= 1;
+
+    if(cart[item].quantity <= 0){
+        delete cart[item];
+    }
 
     renderCart();
 }
 
 function renderCart(){
-
     const cartItems = document.getElementById("cartItems");
 
     cartItems.innerHTML = "";
 
-    cart.forEach((product,index)=>{
+    let total = 0;
+
+    for(let item in cart){
+        const quantity = cart[item].quantity;
+        const price = cart[item].price;
+        const itemTotal = quantity * price;
+
+        total += itemTotal;
 
         cartItems.innerHTML += `
             <div class="order-item">
-                ${index + 1}. ${product.item} - UGX ${product.price.toLocaleString()}
+                <strong>${item}</strong><br>
+                Quantity: x${quantity}<br>
+                Subtotal: UGX ${itemTotal.toLocaleString()}<br><br>
+
+                <button onclick="increaseQuantity('${item}')">+</button>
+                <button onclick="decreaseQuantity('${item}')">-</button>
             </div>
         `;
-    });
+    }
 
     document.getElementById("total").innerHTML =
         `Total: UGX ${total.toLocaleString()}`;
 }
 
 function sendOrder(){
+    const table = document.getElementById("tableNumber").value;
 
-    const table =
-        document.getElementById("tableNumber").value;
+    if(table.trim() === ""){
+        alert("Please enter your table number.");
+        return;
+    }
 
-    if(cart.length === 0){
+    if(Object.keys(cart).length === 0){
         alert("Please add items first.");
         return;
     }
+
+    let total = 0;
 
     let message =
 `🍽️ NEW ORDER
@@ -153,25 +179,28 @@ Table: ${table}
 Items:
 `;
 
-    cart.forEach((product,index)=>{
+    for(let item in cart){
+        const quantity = cart[item].quantity;
+        const price = cart[item].price;
+        const itemTotal = quantity * price;
 
-        message += `${index + 1}. ${product.item} - UGX ${product.price.toLocaleString()}
+        total += itemTotal;
+
+        message += `- ${item} x${quantity} - UGX ${itemTotal.toLocaleString()}
 `;
-    });
+    }
 
     message += `
 Total: UGX ${total.toLocaleString()}
 `;
 
-    const encodedMessage =
-        encodeURIComponent(message);
+    const encodedMessage = encodeURIComponent(message);
 
     const whatsappURL =
-`https://wa.me/${restaurantWhatsApp}?text=${encodedMessage}`;
+        `https://wa.me/${restaurantWhatsApp}?text=${encodedMessage}`;
 
-    window.open(whatsappURL,"_blank");
+    window.open(whatsappURL, "_blank");
 }
-
 </script>
 
 </body>
