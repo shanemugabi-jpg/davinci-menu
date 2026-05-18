@@ -9,6 +9,39 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
+    .menu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:18px;
+}
+
+@media (max-width: 600px){
+    body{
+        padding:15px;
+    }
+
+    h1{
+        font-size:26px;
+    }
+
+    .logo{
+        width:75px;
+        height:75px;
+        font-size:28px;
+    }
+
+    .card{
+        padding:18px;
+    }
+
+    button{
+        width:100%;
+        margin:6px 0;
+    }
+
+    .cart{
+        padding:18px;
+    }
 }
 
 body{
