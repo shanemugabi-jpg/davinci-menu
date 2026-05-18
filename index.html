@@ -1,25 +1,87 @@
+# Spotora-Branded Restaurant QR Menu
+
+Replace your current `index.html` with this upgraded Spotora-styled version:
+
+```html
 <!DOCTYPE html>
 <html>
 <head>
 <title>DaVinci Bar Digital Menu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body{
-    background:#0b0b0b;
+    background:#050505;
     color:#d4af37;
     font-family:Arial,sans-serif;
-    padding:25px;
+    padding:20px;
+}
+
+.header{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.logo{
+    width:90px;
+    height:90px;
+    border-radius:20px;
+    background:#d4af37;
+    color:black;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    font-weight:bold;
+    margin:0 auto 15px;
+    box-shadow:0 0 20px rgba(212,175,55,0.35);
 }
 
 h1{
-    text-align:center;
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#bbbbbb;
+    font-size:15px;
+}
+
+.section-title{
+    margin-top:30px;
+    margin-bottom:20px;
+    font-size:22px;
 }
 
 .card{
-    border:1px solid #d4af37;
-    padding:20px;
-    border-radius:12px;
-    margin-bottom:20px;
+    background:#111111;
+    border:1px solid rgba(212,175,55,0.3);
+    padding:22px;
+    border-radius:18px;
+    margin-bottom:18px;
+    transition:0.3s;
+    box-shadow:0 4px 18px rgba(0,0,0,0.4);
+}
+
+.card:hover{
+    transform:translateY(-3px);
+    border-color:#d4af37;
+}
+
+.card h2{
+    margin-bottom:10px;
+}
+
+.price{
+    color:white;
+    margin-bottom:18px;
+    font-size:18px;
 }
 
 button{
@@ -27,70 +89,126 @@ button{
     color:black;
     border:none;
     padding:12px 18px;
-    border-radius:8px;
+    border-radius:10px;
     cursor:pointer;
     font-weight:bold;
     margin:5px;
 }
 
+button:hover{
+    opacity:0.9;
+}
+
 input{
     width:100%;
-    padding:12px;
+    padding:14px;
     margin-top:10px;
-    margin-bottom:20px;
-    border-radius:8px;
+    margin-bottom:25px;
+    border-radius:12px;
     border:none;
+    background:#151515;
+    color:white;
+    border:1px solid rgba(212,175,55,0.3);
 }
 
 .cart{
+    background:#101010;
     border:2px solid #d4af37;
-    padding:20px;
-    border-radius:12px;
+    padding:22px;
+    border-radius:18px;
     margin-top:40px;
+    box-shadow:0 0 20px rgba(212,175,55,0.15);
 }
 
 .order-item{
-    border:1px solid #d4af37;
+    border:1px solid rgba(212,175,55,0.3);
     padding:15px;
-    border-radius:10px;
-    margin-bottom:10px;
+    border-radius:12px;
+    margin-bottom:12px;
+    background:#171717;
 }
+
+.total{
+    margin-top:20px;
+    margin-bottom:15px;
+    font-size:24px;
+}
+
+.submit-btn{
+    width:100%;
+    padding:16px;
+    font-size:16px;
+}
+
+.footer{
+    margin-top:50px;
+    text-align:center;
+    color:#888888;
+}
+
+.footer-logo{
+    margin-top:10px;
+    color:#d4af37;
+    font-size:20px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>DaVinci Bar Digital Menu</h1>
+<div class="header">
+    <div class="logo">S</div>
+    <h1>DaVinci Bar</h1>
+    <p class="subtitle">Premium Digital Ordering Experience</p>
+</div>
 
 <label>Enter Table Number</label>
 <input type="text" id="tableNumber" placeholder="e.g Table 7">
 
+<h2 class="section-title">Featured Menu</h2>
+
 <div class="card">
-<h2>Classic Beef Burger</h2>
-<p>UGX 42,000</p>
-<button onclick="addToCart('Classic Beef Burger',42000)">Add to Order</button>
+    <h2>Classic Beef Burger</h2>
+    <p class="price">UGX 42,000</p>
+    <button onclick="addToCart('Classic Beef Burger',42000)">
+        Add to Order
+    </button>
 </div>
 
 <div class="card">
-<h2>Espresso Martini</h2>
-<p>UGX 35,000</p>
-<button onclick="addToCart('Espresso Martini',35000)">Add to Order</button>
+    <h2>Espresso Martini</h2>
+    <p class="price">UGX 35,000</p>
+    <button onclick="addToCart('Espresso Martini',35000)">
+        Add to Order
+    </button>
 </div>
 
 <div class="card">
-<h2>Aperol Spritz</h2>
-<p>UGX 35,000</p>
-<button onclick="addToCart('Aperol Spritz',35000)">Add to Order</button>
+    <h2>Aperol Spritz</h2>
+    <p class="price">UGX 35,000</p>
+    <button onclick="addToCart('Aperol Spritz',35000)">
+        Add to Order
+    </button>
 </div>
 
 <div class="cart">
-<h2>Your Order</h2>
+    <h2>Your Order</h2>
 
-<div id="cartItems"></div>
+    <div id="cartItems"></div>
 
-<h3 id="total">Total: UGX 0</h3>
+    <h3 id="total" class="total">Total: UGX 0</h3>
 
-<button onclick="sendOrder()">Submit Order on WhatsApp</button>
+    <button class="submit-btn" onclick="sendOrder()">
+        Submit Order on WhatsApp
+    </button>
+</div>
+
+<div class="footer">
+    <p>Powered by</p>
+    <div class="footer-logo">SPOTORA</div>
 </div>
 
 <script>
@@ -142,7 +260,7 @@ function renderCart(){
 
         cartItems.innerHTML += `
             <div class="order-item">
-                <strong>${item}</strong><br>
+                <strong>${item}</strong><br><br>
                 Quantity: x${quantity}<br>
                 Subtotal: UGX ${itemTotal.toLocaleString()}<br><br>
 
@@ -186,13 +304,10 @@ Items:
 
         total += itemTotal;
 
-        message += `- ${item} x${quantity} - UGX ${itemTotal.toLocaleString()}
-`;
+        message += `- ${item} x${quantity} - UGX ${itemTotal.toLocaleString()}\n`;
     }
 
-    message += `
-Total: UGX ${total.toLocaleString()}
-`;
+    message += `\nTotal: UGX ${total.toLocaleString()}\n`;
 
     const encodedMessage = encodeURIComponent(message);
 
@@ -205,3 +320,11 @@ Total: UGX ${total.toLocaleString()}
 
 </body>
 </html>
+```
+
+After replacing the file:
+
+1. Save it as `index.html`
+2. Redeploy on Vercel
+3. Test the QR code again
+4. Present it as a Spotora-powered smart ordering experience
