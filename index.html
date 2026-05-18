@@ -1,53 +1,178 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <title>DaVinci Bar Digital Menu</title>
+
 <style>
-body {
+body{
     background:#0b0b0b;
     color:#d4af37;
     font-family:Arial,sans-serif;
-    padding:40px;
+    padding:25px;
 }
-.card {
+
+h1{
+    text-align:center;
+}
+
+.card{
     border:1px solid #d4af37;
     padding:20px;
     border-radius:12px;
     margin-bottom:20px;
 }
-button {
+
+button{
     background:#d4af37;
     color:black;
     border:none;
     padding:12px 18px;
     border-radius:8px;
     cursor:pointer;
+    font-weight:bold;
+}
+
+.cart{
+    border:2px solid #d4af37;
+    padding:20px;
+    border-radius:12px;
+    margin-top:40px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    margin-bottom:20px;
+    border-radius:8px;
+    border:none;
+}
+
+.order-item{
+    margin-bottom:10px;
 }
 </style>
 </head>
+
 <body>
+
 <h1>DaVinci Bar Digital Menu</h1>
-<p>Table 07</p>
+
+<label>Enter Table Number</label>
+<input type="text" id="tableNumber" placeholder="e.g Table 7">
 
 <div class="card">
 <h2>Classic Beef Burger</h2>
 <p>UGX 42,000</p>
-<button>Add to Order</button>
+<button onclick="addToCart('Classic Beef Burger',42000)">
+Add to Order
+</button>
 </div>
 
 <div class="card">
 <h2>Espresso Martini</h2>
 <p>UGX 35,000</p>
-<button>Add to Order</button>
+<button onclick="addToCart('Espresso Martini',35000)">
+Add to Order
+</button>
 </div>
 
 <div class="card">
 <h2>Aperol Spritz</h2>
 <p>UGX 35,000</p>
-<button>Add to Order</button>
+<button onclick="addToCart('Aperol Spritz',35000)">
+Add to Order
+</button>
 </div>
 
-<p>This is a prototype flow for your restaurant QR ordering system.</p>
+<div class="cart">
+<h2>Your Order</h2>
+
+<div id="cartItems"></div>
+
+<h3 id="total">Total: UGX 0</h3>
+
+<button onclick="sendOrder()">
+Submit Order
+</button>
+</div>
+
+<script>
+
+const restaurantWhatsApp = "256771753680";
+
+let cart = [];
+let total = 0;
+
+function addToCart(item, price){
+
+    cart.push({
+        item,
+        price
+    });
+
+    total += price;
+
+    renderCart();
+}
+
+function renderCart(){
+
+    const cartItems = document.getElementById("cartItems");
+
+    cartItems.innerHTML = "";
+
+    cart.forEach((product,index)=>{
+
+        cartItems.innerHTML += `
+            <div class="order-item">
+                ${index + 1}. ${product.item} - UGX ${product.price.toLocaleString()}
+            </div>
+        `;
+    });
+
+    document.getElementById("total").innerHTML =
+        `Total: UGX ${total.toLocaleString()}`;
+}
+
+function sendOrder(){
+
+    const table =
+        document.getElementById("tableNumber").value;
+
+    if(cart.length === 0){
+        alert("Please add items first.");
+        return;
+    }
+
+    let message =
+`🍽️ NEW ORDER
+
+Table: ${table}
+
+Items:
+`;
+
+    cart.forEach((product,index)=>{
+
+        message += `${index + 1}. ${product.item} - UGX ${product.price.toLocaleString()}
+`;
+    });
+
+    message += `
+Total: UGX ${total.toLocaleString()}
+`;
+
+    const encodedMessage =
+        encodeURIComponent(message);
+
+    const whatsappURL =
+`https://wa.me/${restaurantWhatsApp}?text=${encodedMessage}`;
+
+    window.open(whatsappURL,"_blank");
+}
+
+</script>
+
 </body>
 </html>
