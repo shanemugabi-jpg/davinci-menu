@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>DaVinci Bar Digital Menu</title>
+<title>Spotora | Find your spot</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -9,342 +9,240 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    .menu-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
-    gap:18px;
-}
-
-@media (max-width: 600px){
-    body{
-        padding:15px;
-    }
-
-    h1{
-        font-size:26px;
-    }
-
-    .logo{
-        width:75px;
-        height:75px;
-        font-size:28px;
-    }
-
-    .card{
-        padding:18px;
-    }
-
-    button{
-        width:100%;
-        margin:6px 0;
-    }
-
-    .cart{
-        padding:18px;
-    }
 }
 
 body{
     background:#050505;
-    color:#d4af37;
-    font-family:Arial,sans-serif;
-    padding:20px;
+    color:white;
+    font-family:Arial, sans-serif;
+    line-height:1.6;
 }
 
-.header{
+section{
+    padding:70px 22px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.hero{
     text-align:center;
-    margin-bottom:35px;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 }
 
 .logo{
-    width:90px;
-    height:90px;
-    border-radius:20px;
-    background:#d4af37;
-    color:black;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:34px;
-    font-weight:bold;
-    margin:0 auto 15px;
-    box-shadow:0 0 20px rgba(212,175,55,0.35);
+    width:130px;
+    margin-bottom:25px;
 }
 
 h1{
-    font-size:32px;
-    margin-bottom:10px;
+    color:#d4af37;
+    font-size:56px;
+    letter-spacing:4px;
 }
 
-.subtitle{
-    color:#bbbbbb;
-    font-size:15px;
+.tagline{
+    color:#d4af37;
+    font-size:24px;
+    margin:10px 0 25px;
 }
 
-.section-title{
-    margin-top:30px;
-    margin-bottom:20px;
-    font-size:22px;
+.hero-text{
+    max-width:750px;
+    font-size:20px;
+    color:#ddd;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:35px;
+    background:#d4af37;
+    color:black;
+    padding:15px 28px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.divider{
+    height:1px;
+    background:rgba(212,175,55,0.3);
+    margin:20px auto;
+    max-width:800px;
+}
+
+h2{
+    color:#d4af37;
+    font-size:34px;
+    margin-bottom:30px;
+    text-align:center;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+    gap:20px;
 }
 
 .card{
-    background:#111111;
+    background:#111;
     border:1px solid rgba(212,175,55,0.3);
-    padding:22px;
     border-radius:18px;
-    margin-bottom:18px;
-    transition:0.3s;
-    box-shadow:0 4px 18px rgba(0,0,0,0.4);
+    padding:25px;
+    text-align:center;
 }
 
-.card:hover{
-    transform:translateY(-3px);
-    border-color:#d4af37;
-}
-
-.card h2{
+.card h3{
+    color:#d4af37;
     margin-bottom:10px;
 }
 
-.price{
-    color:white;
-    margin-bottom:18px;
-    font-size:18px;
+.restaurant{
+    text-align:center;
 }
 
-button{
-    background:#d4af37;
-    color:black;
-    border:none;
-    padding:12px 18px;
-    border-radius:10px;
-    cursor:pointer;
+.restaurant p{
+    color:#ddd;
+    max-width:700px;
+    margin:0 auto 25px;
+    font-size:19px;
+}
+
+ul{
+    list-style:none;
+    margin:25px 0;
+}
+
+li{
+    margin:10px 0;
+    color:#ddd;
+}
+
+.contact{
+    text-align:center;
+}
+
+.contact a{
+    color:#d4af37;
+    text-decoration:none;
     font-weight:bold;
-    margin:5px;
-}
-
-button:hover{
-    opacity:0.9;
-}
-
-input{
-    width:100%;
-    padding:14px;
-    margin-top:10px;
-    margin-bottom:25px;
-    border-radius:12px;
-    border:none;
-    background:#151515;
-    color:white;
-    border:1px solid rgba(212,175,55,0.3);
-}
-
-.cart{
-    background:#101010;
-    border:2px solid #d4af37;
-    padding:22px;
-    border-radius:18px;
-    margin-top:40px;
-    box-shadow:0 0 20px rgba(212,175,55,0.15);
-}
-
-.order-item{
-    border:1px solid rgba(212,175,55,0.3);
-    padding:15px;
-    border-radius:12px;
-    margin-bottom:12px;
-    background:#171717;
-}
-
-.total{
-    margin-top:20px;
-    margin-bottom:15px;
-    font-size:24px;
-}
-
-.submit-btn{
-    width:100%;
-    padding:16px;
-    font-size:16px;
 }
 
 .footer{
-    margin-top:50px;
     text-align:center;
-    color:#888888;
+    padding:35px 20px;
+    color:#888;
+    border-top:1px solid rgba(212,175,55,0.2);
 }
 
-.footer-logo{
-    margin-top:10px;
+.footer strong{
     color:#d4af37;
-    font-size:20px;
-    font-weight:bold;
-    letter-spacing:2px;
 }
 
+@media(max-width:600px){
+    h1{
+        font-size:42px;
+    }
+
+    .tagline{
+        font-size:20px;
+    }
+
+    .hero-text{
+        font-size:17px;
+    }
+
+    section{
+        padding:55px 18px;
+    }
+
+    .logo{
+        width:105px;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<div class="header">
-    <div class="logo">S</div>
-    <h1>DaVinci</h1>
-    <p class="subtitle">Premium Digital Ordering Experience</p>
-</div>
+<section class="hero">
+    <img src="spotora-logo.png" class="logo" alt="Spotora Logo">
 
-<label>Enter Table Number</label>
-<input type="text" id="tableNumber" placeholder="e.g Table 7">
+    <h1>SPOTORA</h1>
 
-<h2 class="section-title">Featured Menu</h2>
+    <p class="tagline">Find your spot.</p>
 
-<div class="card">
-    <h2>Classic Beef Burger</h2>
-    <p class="price">UGX 42,000</p>
-    <button onclick="addToCart('Classic Beef Burger',42000)">
-        Add to Order
-    </button>
-</div>
+    <p class="hero-text">
+        Discover restaurants. Browse menus. Order in seconds.
+        <br><br>
+        Whether you're dining out, exploring new places, or scanning a QR at your table,
+        Spotora helps you move from discovery to order—fast.
+    </p>
 
-<div class="card">
-    <h2>Espresso Martini</h2>
-    <p class="price">UGX 35,000</p>
-    <button onclick="addToCart('Espresso Martini',35000)">
-        Add to Order
-    </button>
-</div>
+    <a href="#restaurants" class="btn">Explore Restaurants</a>
+</section>
 
-<div class="card">
-    <h2>Aperol Spritz</h2>
-    <p class="price">UGX 35,000</p>
-    <button onclick="addToCart('Aperol Spritz',35000)">
-        Add to Order
-    </button>
-</div>
+<div class="divider"></div>
 
-<div class="cart">
-    <h2>Your Order</h2>
+<section>
+    <h2>Why Spotora?</h2>
 
-    <div id="cartItems"></div>
+    <div class="grid">
+        <div class="card">
+            <h3>📍 Discover Places Nearby</h3>
+            <p>Find restaurants and venues worth visiting.</p>
+        </div>
 
-    <h3 id="total" class="total">Total: UGX 0</h3>
+        <div class="card">
+            <h3>📖 Digital Menus</h3>
+            <p>View beautiful menus instantly.</p>
+        </div>
 
-    <button class="submit-btn" onclick="sendOrder()">
-        Submit Order on WhatsApp
-    </button>
-</div>
+        <div class="card">
+            <h3>⚡ QR Ordering</h3>
+            <p>Scan. Order. Enjoy.</p>
+        </div>
 
-<div class="footer">
-    <p>Powered by</p>
-    <div class="footer-logo">SPOTORA</div>
-</div>
+        <div class="card">
+            <h3>🎯 Fast & Simple</h3>
+            <p>No app installs. No waiting.</p>
+        </div>
+    </div>
+</section>
 
-<script>
-const restaurantWhatsApp = "256771753680";
+<div class="divider"></div>
 
-let cart = {};
+<section id="restaurants" class="restaurant">
+    <h2>For Restaurants</h2>
 
-function addToCart(item, price){
-    if(cart[item]){
-        cart[item].quantity += 1;
-    } else {
-        cart[item] = {
-            price: price,
-            quantity: 1
-        };
-    }
+    <p>
+        Turn every table into a digital ordering experience.
+    </p>
 
-    renderCart();
-}
+    <ul>
+        <li>• QR Menu Setup</li>
+        <li>• Menu Digitisation</li>
+        <li>• Ordering Experience</li>
+        <li>• Hospitality Visibility</li>
+    </ul>
 
-function increaseQuantity(item){
-    cart[item].quantity += 1;
-    renderCart();
-}
+    <p><strong>Interested in onboarding?</strong></p>
 
-function decreaseQuantity(item){
-    cart[item].quantity -= 1;
+    <a href="mailto:spotoraug@gmail.com" class="btn">Contact Us</a>
+</section>
 
-    if(cart[item].quantity <= 0){
-        delete cart[item];
-    }
+<section class="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:spotoraug@gmail.com">spotoraug@gmail.com</a></p>
+</section>
 
-    renderCart();
-}
-
-function renderCart(){
-    const cartItems = document.getElementById("cartItems");
-
-    cartItems.innerHTML = "";
-
-    let total = 0;
-
-    for(let item in cart){
-        const quantity = cart[item].quantity;
-        const price = cart[item].price;
-        const itemTotal = quantity * price;
-
-        total += itemTotal;
-
-        cartItems.innerHTML += `
-            <div class="order-item">
-                <strong>${item}</strong><br><br>
-                Quantity: x${quantity}<br>
-                Subtotal: UGX ${itemTotal.toLocaleString()}<br><br>
-
-                <button onclick="increaseQuantity('${item}')">+</button>
-                <button onclick="decreaseQuantity('${item}')">-</button>
-            </div>
-        `;
-    }
-
-    document.getElementById("total").innerHTML =
-        `Total: UGX ${total.toLocaleString()}`;
-}
-
-function sendOrder(){
-    const table = document.getElementById("tableNumber").value;
-
-    if(table.trim() === ""){
-        alert("Please enter your table number.");
-        return;
-    }
-
-    if(Object.keys(cart).length === 0){
-        alert("Please add items first.");
-        return;
-    }
-
-    let total = 0;
-
-    let message =
-`🍽️ NEW ORDER
-
-Table: ${table}
-
-Items:
-`;
-
-    for(let item in cart){
-        const quantity = cart[item].quantity;
-        const price = cart[item].price;
-        const itemTotal = quantity * price;
-
-        total += itemTotal;
-
-        message += `- ${item} x${quantity} - UGX ${itemTotal.toLocaleString()}\n`;
-    }
-
-    message += `\nTotal: UGX ${total.toLocaleString()}\n`;
-
-    const encodedMessage = encodeURIComponent(message);
-
-    const whatsappURL =
-        `https://wa.me/${restaurantWhatsApp}?text=${encodedMessage}`;
-
-    window.open(whatsappURL, "_blank");
-}
-</script>
+<footer class="footer">
+    <p>Powered by <strong>Spotora</strong></p>
+    <p>Find your spot.</p>
+</footer>
 
 </body>
 </html>
