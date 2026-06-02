@@ -5,60 +5,400 @@ import { useState } from "react";
 const WHATSAPP_NUMBER = "256771753680";
 
 const menu = [
-  { category: "Breakfast", items: [
-    ["Lite Breakfast", 25000], ["Full English Breakfast", 30000],
-    ["Ugandan Katogo Breakfast", 15000], ["Wraps Breakfast", 25000]
-  ]},
-  { category: "Tasty Bites", items: [
-    ["Samosas", 8000], ["Sausages", 10000], ["Boiled Eggs", 8000],
-    ["Beef Mushrooms", 15000], ["Omelette", 10000],
-    ["French Fries", 10000], ["Masala Chips", 12000],
-    ["Chicken Wings", 20000], ["Chapati", 3000]
-  ]},
-  { category: "Salads & Soups", items: [
-    ["Garden Salad", 12000], ["Chicken Salad", 18000],
-    ["Chicken & Corn Soup", 20000], ["Vegetable Soup", 15000],
-    ["Chicken Cream Soup", 20000], ["Starter Soup", 10000]
-  ]},
-  { category: "Boiled Dishes", items: [
-    ["Whole Broiled Local Chicken", 70000],
-    ["1/4 Local Boiled Chicken", 25000],
-    ["Cow’s Trotters", 15000]
-  ]},
-  { category: "Fried Dishes", items: [
-    ["Kikalayi Pork Matooke & Salad", 50000],
-    ["Fried Goat Katumbari", 30000],
-    ["Chicken Biryani", 35000],
-    ["Goat Maasai & Salad", 30000],
-    ["Stir Fried Chicken", 30000]
-  ]},
-  { category: "Curry Dishes", items: [
-    ["Vegetable Curry", 15000], ["Chicken Curry", 35000],
-    ["Whole Tilapia Curry", 45000], ["Vegetable Jalfrezi", 18000]
-  ]},
-  { category: "Roasts / Grills", items: [
-    ["Whole Chicken & Katumbari", 50000],
-    ["Half Chicken & Katumbari", 30000],
-    ["Full Rack Goat Ribs & Katumbari", 60000],
-    ["Half Rack Goat Ribs & Katumbari", 30000],
-    ["Pork Skewers & Katumbari", 25000],
-    ["Whole Fish Tilapia Salad & Tartar Sauce", 45000]
-  ]},
-  { category: "Pizza", items: [
-    ["BBQ Chicken Pizza", 40000],
-    ["Hawaiian Pizza", 40000],
-    ["Margarita Pizza", 40000],
-    ["Pepperoni Pizza", 40000]
-  ]},
-  { category: "Soft Drinks", items: [
-    ["Soda 300ml", 4000], ["Water 500ml", 3000],
-    ["Juice", 15000], ["Smoothie", 15000], ["Milkshake", 20000]
-  ]},
-  { category: "Hot Beverages", items: [
-    ["Black Tea", 10000], ["Lemon Tea", 10000],
-    ["African Tea", 10000], ["Coffee Latte", 10000],
-    ["Hot Chocolate", 10000], ["Espresso Single", 10000]
-  ]},
+  {
+    category: "Breakfast",
+    items: [
+      {
+        name: "Lite Breakfast",
+        description:
+          "Buttered toast, tomatoes, 2 fried eggs & 2 beef sausages, with a choice of tea/coffee.",
+        price: 25000,
+      },
+      {
+        name: "Full English Breakfast",
+        description:
+          "Buttered bread, bacon strips, 2 fried eggs & 2 beef sausages, baked beans, with a choice of tea/coffee & fresh juice.",
+        price: 30000,
+      },
+      {
+        name: "Uganda Katogo Breakfast",
+        description: "With beef in matooke with greens.",
+        price: 12000,
+      },
+      {
+        name: "Wra’s Breakfast (Zone 7 Rolex)",
+        description:
+          "African chapati wrap with 2 eggs, barbeque beef strips, barbeque sauce with a choice of tea/coffee.",
+        price: 25000,
+      },
+    ],
+  },
+  {
+    category: "Tasty Bites",
+    items: [
+      { name: "Samosas", description: "Beef / vegetable.", price: 8000 },
+      { name: "Sausages", description: "Beef / pork.", price: 10000 },
+      { name: "Boiled Eggs", description: "", price: 1000 },
+      {
+        name: "Rolex",
+        description: "Chapati roll, eggs, tomato & vegetable strips.",
+        price: 10000,
+      },
+      { name: "Bread", description: "", price: 700 },
+      { name: "Chapati", description: "", price: 1000 },
+      { name: "Omelette", description: "", price: 10000 },
+      { name: "French Fries", description: "", price: 12000 },
+      { name: "Fish Fingers", description: "", price: 15000 },
+      { name: "Vegetable Spring Rolls", description: "", price: 12000 },
+      { name: "Chicken Lollipops", description: "", price: 20000 },
+      { name: "Chicken Wings", description: "", price: 20000 },
+      { name: "Fish Fillet", description: "", price: 20000 },
+      { name: "French Toast", description: "", price: 10000 },
+    ],
+  },
+  {
+    category: "Salads",
+    items: [
+      { name: "Garden Salad", description: "", price: 12000 },
+      { name: "Coleslaw", description: "", price: 15000 },
+      { name: "Potato & Corn Salad", description: "", price: 20000 },
+      { name: "Chicken Salad", description: "", price: 18000 },
+      { name: "Chicken Mushroom Salad", description: "", price: 20000 },
+      { name: "Caesar Salad", description: "", price: 35000 },
+      { name: "Fruit Salad", description: "", price: 20000 },
+    ],
+  },
+  {
+    category: "Boiled Dishes",
+    items: [
+      {
+        name: "Whole Boiled Local Chicken",
+        description: "With one or two sides.",
+        price: 70000,
+      },
+      {
+        name: "Cow’s Trotters",
+        description: "Nigare matooke.",
+        price: 15000,
+      },
+    ],
+  },
+  {
+    category: "Fried Dishes",
+    items: [
+      {
+        name: "Kilalo",
+        description: "Chicken, pork, matooke & salads.",
+        price: 50000,
+      },
+      { name: "Pork & Salad", description: "Katumbari.", price: 25000 },
+      { name: "Liver", description: "Yamaze salad.", price: 20000 },
+      { name: "Fried Fish", description: "Salsa.", price: 25000 },
+      { name: "Whole Fish", description: "Sunjumyo salad.", price: 50000 },
+      { name: "Chicken Biryani", description: "", price: 30000 },
+      { name: "Chicken Wings", description: "", price: 35000 },
+      { name: "Goat Meat & Salad", description: "", price: 30000 },
+      { name: "Stir Fried Beef", description: "", price: 30000 },
+      { name: "Stir Fried Chicken", description: "", price: 30000 },
+    ],
+  },
+  {
+    category: "Soups",
+    items: [
+      { name: "Clear Mushroom Soup", description: "", price: 15000 },
+      { name: "Mushroom Cream Soup", description: "", price: 17000 },
+      { name: "Clear Vegetable Soup", description: "", price: 15000 },
+      { name: "Clear Chicken Soup", description: "", price: 17000 },
+      { name: "Sweet Corn Soup", description: "", price: 10000 },
+      { name: "Stacker Soup", description: "", price: 10000 },
+    ],
+  },
+  {
+    category: "Curry Dishes",
+    items: [
+      { name: "Vegetable Curry", description: "", price: 15000 },
+      { name: "Chicken Curry", description: "", price: 25000 },
+      { name: "Beef Curry", description: "", price: 35000 },
+      { name: "Goat Meat Masala Curry", description: "", price: 45000 },
+      { name: "Vegetable Mafezi", description: "", price: 18000 },
+    ],
+  },
+  {
+    category: "Roasts / Grills",
+    items: [
+      {
+        name: "Whole Chicken & Katumbari",
+        description: "",
+        price: 50000,
+      },
+      {
+        name: "Half Chicken & Katumbari",
+        description: "",
+        price: 35000,
+      },
+      {
+        name: "Quarter Chicken & Katumbari",
+        description: "",
+        price: 20000,
+      },
+      {
+        name: "Goat Skewers & Katumbari",
+        description: "",
+        price: 30000,
+      },
+      {
+        name: "Beef Skewers & Katumbari",
+        description: "",
+        price: 25000,
+      },
+      {
+        name: "Pork Skewers & Katumbari",
+        description: "",
+        price: 25000,
+      },
+      {
+        name: "Katumbari Pork Ribs & Katumbari",
+        description: "",
+        price: 30000,
+      },
+      {
+        name: "Katumbari Goat Ribs & Katumbari",
+        description: "",
+        price: 30000,
+      },
+      { name: "Tartar Sauce", description: "", price: 5000 },
+    ],
+  },
+  {
+    category: "Mixed Grill Platter",
+    items: [
+      {
+        name: "Mixed Grill Platter",
+        description:
+          "Chicken, pork, goat, fish fingers, vegetables, spring rolls, french fries & fresh salads. Pork ribs platter.",
+        price: 100000,
+      },
+    ],
+  },
+  {
+    category: "Pizza",
+    items: [
+      {
+        name: "BBQ Chicken Pizza",
+        description:
+          "Chicken, fresh mushroom, onions, green pepper, mozzarella cheese.",
+        price: 40000,
+      },
+      {
+        name: "Margarita Pizza",
+        description: "Onions, tomatoes, fresh mushrooms & mozzarella cheese.",
+        price: 40000,
+      },
+      {
+        name: "Hawaiian Pizza",
+        description: "Ham, pineapple, onions, tomatoes & mozzarella cheese.",
+        price: 40000,
+      },
+      {
+        name: "Pepperoni Pizza",
+        description: "Pepperoni, olives & mozzarella cheese.",
+        price: 40000,
+      },
+    ],
+  },
+  {
+    category: "A Little More",
+    items: [
+      { name: "Plain Chips & Salad", description: "", price: 10000 },
+      { name: "Potato Wedges Mashed", description: "", price: 15000 },
+      { name: "Cheese & Chips", description: "", price: 15000 },
+      { name: "Rice", description: "Vegetable / brown.", price: 9000 },
+      { name: "Plain Posho & Gravy", description: "", price: 8000 },
+      {
+        name: "Katumbari / Sukumawiki / Nakati",
+        description: "",
+        price: 7000,
+      },
+      { name: "Matooke", description: "", price: 8000 },
+      { name: "Ugali", description: "", price: 7000 },
+    ],
+  },
+
+  {
+    category: "Soft Drinks",
+    items: [
+      { name: "Soda 300ml", description: "", price: 4000 },
+      { name: "Water 500ml", description: "", price: 3000 },
+    ],
+  },
+  {
+    category: "Juice",
+    items: [
+      { name: "Passion & Ginger Juice", description: "", price: 15000 },
+      { name: "Orange Juice", description: "", price: 15000 },
+      { name: "Watermelon Juice", description: "", price: 15000 },
+    ],
+  },
+  {
+    category: "Smoothies",
+    items: [
+      { name: "Banana / Pineapple Smoothie", description: "", price: 15000 },
+      { name: "Mango / Pineapple Smoothie", description: "", price: 15000 },
+      { name: "Strawberry / Banana Smoothie", description: "", price: 15000 },
+      {
+        name: "Pineapple / Watermelon Smoothie",
+        description: "",
+        price: 15000,
+      },
+      { name: "Passion / Mango Smoothie", description: "", price: 15000 },
+    ],
+  },
+  {
+    category: "Milkshakes",
+    items: [
+      { name: "Vanilla Milkshake", description: "", price: 20000 },
+      { name: "Chocolate Milkshake", description: "", price: 20000 },
+      { name: "Strawberry Milkshake", description: "", price: 20000 },
+      { name: "Oreo Chocolate Milkshake", description: "", price: 20000 },
+    ],
+  },
+  {
+    category: "Hot Beverages",
+    items: [
+      { name: "Black Tea", description: "Spiced / non-spiced.", price: 10000 },
+      { name: "Green Tea", description: "Spiced / non-spiced.", price: 10000 },
+      { name: "Coffee Latte", description: "", price: 10000 },
+      { name: "African Coffee", description: "", price: 10000 },
+      { name: "Cappuccino", description: "", price: 10000 },
+      { name: "Hot Chocolate", description: "", price: 10000 },
+      { name: "Espresso Coffee Single", description: "", price: 12000 },
+      { name: "Espresso Coffee Double", description: "", price: 15000 },
+    ],
+  },
+  {
+    category: "Beers",
+    items: [
+      { name: "White Cap Crisp", description: "", price: 8000 },
+      { name: "Whiskey Black", description: "", price: 10000 },
+      { name: "Smirnoff Red", description: "", price: 10000 },
+      { name: "Smirnoff Black", description: "", price: 10000 },
+      { name: "Savanna", description: "", price: 14000 },
+      { name: "Stella Artois", description: "", price: 15000 },
+      { name: "Heineken", description: "", price: 15000 },
+      { name: "Hunters", description: "", price: 15000 },
+      { name: "Red Square", description: "", price: 15000 },
+      { name: "Guinness", description: "Dry / cold.", price: 15000 },
+    ],
+  },
+  {
+    category: "Whisky",
+    items: [
+      { name: "Blue Label Bottle", description: "", price: 1600000 },
+      { name: "Double Black Bottle", description: "", price: 380000 },
+      { name: "Black Label Bottle", description: "", price: 340000 },
+      { name: "Red Label Bottle", description: "", price: 200000 },
+      { name: "Hunters", description: "Dry / cold.", price: 15000 },
+      { name: "Jameson Bottle", description: "", price: 270000 },
+      { name: "Glenfiddich 12yrs Bottle", description: "", price: 350000 },
+      { name: "Glenfiddich 15yrs Bottle", description: "", price: 480000 },
+      { name: "Glenfiddich 18yrs Bottle", description: "", price: 620000 },
+      { name: "Singleton 12yrs Bottle", description: "", price: 350000 },
+      { name: "Singleton 18yrs Bottle", description: "", price: 620000 },
+      { name: "Chivas Regal 12yrs Bottle", description: "", price: 360000 },
+      { name: "Chivas Regal 18yrs Bottle", description: "", price: 740000 },
+      { name: "Jack Daniel’s Fire Bottle", description: "", price: 280000 },
+      { name: "Jack Daniel’s Honey Bottle", description: "", price: 280000 },
+      { name: "Jack Daniel’s Bottle", description: "", price: 280000 },
+      { name: "Johnnie Walker Red Bottle", description: "", price: 280000 },
+      { name: "Johnnie Walker Black Bottle", description: "", price: 510000 },
+      { name: "Jameson 375ml Bottle", description: "", price: 120000 },
+      { name: "Jameson 1L Bottle", description: "", price: 270000 },
+      { name: "Ballantines Bottle", description: "", price: 200000 },
+      { name: "Famous Grouse Bottle", description: "", price: 280000 },
+      { name: "J & B OR Bottle", description: "", price: 200000 },
+      { name: "Black & White Bottle", description: "", price: 70000 },
+    ],
+  },
+  {
+    category: "Bottle Shots",
+    items: [
+      { name: "Brandy & Cognac VSOP", description: "", price: 825000 },
+      { name: "VS Bottle Shot", description: "", price: 570000 },
+      { name: "Martell VSOP Bottle Shot", description: "", price: 650000 },
+      { name: "Martell VS Bottle Shot", description: "", price: 480000 },
+      { name: "Courvoisier VSOP Bottle Shot", description: "", price: 740000 },
+      { name: "Courvoisier VS Bottle Shot", description: "", price: 480000 },
+      { name: "Rémy Martin VSOP Bottle Shot", description: "", price: 745000 },
+      { name: "Rémy Martin VS Bottle Shot", description: "", price: 480000 },
+      { name: "Hennessy VSOP Bottle Shot", description: "", price: 750000 },
+      { name: "Hennessy VS Bottle Shot", description: "", price: 490000 },
+      { name: "Uganda Waragi Shot", description: "", price: 20000 },
+      { name: "UG Premium Gin Shot", description: "", price: 19000 },
+      { name: "UG Coconut Shot", description: "", price: 19000 },
+      { name: "UG Orange Shot", description: "", price: 19000 },
+      { name: "UG Lemon & Ginger Shot", description: "", price: 20000 },
+      { name: "Gilbey’s 750ml", description: "", price: 275000 },
+      { name: "Gilbey’s 350ml", description: "", price: 195000 },
+      { name: "Gilbey’s 250ml", description: "", price: 120000 },
+      { name: "Gilbey’s Dry Gin", description: "", price: 180000 },
+      { name: "Gordon’s Dry 200ml", description: "", price: 40000 },
+      { name: "Gordon’s Dry", description: "", price: 180000 },
+    ],
+  },
+  {
+    category: "Tequila",
+    items: [
+      { name: "Olmeca", description: "", price: 275000 },
+      { name: "Silver / Gold / Chocolate", description: "", price: 275000 },
+      { name: "Don Julio", description: "", price: 565000 },
+      { name: "Silver / Anejo", description: "", price: 565000 },
+      { name: "La Patron", description: "", price: 565000 },
+      { name: "Silver / Anejo / Gold", description: "", price: 565000 },
+      { name: "B52", description: "", price: 565000 },
+    ],
+  },
+  {
+    category: "Vodka",
+    items: [
+      { name: "Ciroc", description: "", price: 400000 },
+      { name: "Ciroc Blue Dot", description: "", price: 450000 },
+      { name: "Grey Goose", description: "", price: 350000 },
+      { name: "Absolut", description: "", price: 220000 },
+      { name: "Smirnoff Vanilla", description: "", price: 180000 },
+      { name: "Smirnoff 1L", description: "", price: 180000 },
+      { name: "Smirnoff 350ml", description: "", price: 110000 },
+      { name: "Skyy Vodka", description: "", price: 110000 },
+    ],
+  },
+  {
+    category: "Rum",
+    items: [
+      { name: "Captain Morgan", description: "", price: 180000 },
+      { name: "Captain Morgan", description: "Spiced gold.", price: 180000 },
+      { name: "Bacardi Gold", description: "", price: 180000 },
+    ],
+  },
+  {
+    category: "Wines",
+    items: [
+      { name: "Nederburg 1.5L", description: "", price: 120000 },
+      { name: "KWV", description: "Red, sweet, gold, luxrose.", price: 120000 },
+    ],
+  },
+  {
+    category: "Sparkling",
+    items: [
+      { name: "Belle Italia 750ml", description: "", price: 160000 },
+      { name: "House Wine by Glass", description: "", price: 20000 },
+    ],
+  },
+  {
+    category: "Champagne",
+    items: [
+      { name: "Moët & Chandon", description: "", price: 565000 },
+      { name: "Moët & Chandon Imperial", description: "", price: 565000 },
+    ],
+  },
 ];
 
 export default function Zone7Page() {
@@ -66,15 +406,17 @@ export default function Zone7Page() {
   const [table, setTable] = useState("");
   const [notes, setNotes] = useState("");
 
-  const addItem = (name, price) => {
+  const addItem = (item) => {
     setCart((prev) => {
-      const existing = prev.find((item) => item.name === name);
+      const existing = prev.find((cartItem) => cartItem.name === item.name);
       if (existing) {
-        return prev.map((item) =>
-          item.name === name ? { ...item, qty: item.qty + 1 } : item
+        return prev.map((cartItem) =>
+          cartItem.name === item.name
+            ? { ...cartItem, qty: cartItem.qty + 1 }
+            : cartItem
         );
       }
-      return [...prev, { name, price, qty: 1 }];
+      return [...prev, { ...item, qty: 1 }];
     });
   };
 
@@ -104,7 +446,9 @@ export default function Zone7Page() {
     const orderText = cart
       .map(
         (item) =>
-          `${item.qty}× ${item.name} — UGX ${(item.price * item.qty).toLocaleString()}`
+          `${item.qty}× ${item.name} — UGX ${(
+            item.price * item.qty
+          ).toLocaleString()}`
       )
       .join("%0A");
 
@@ -120,7 +464,7 @@ export default function Zone7Page() {
   };
 
   return (
-    <main className="min-h-screen bg-black text-white pb-32">
+    <main className="min-h-screen bg-black text-white pb-36">
       <section className="px-5 py-8 text-center border-b border-yellow-600/30">
         <h1 className="text-5xl font-black tracking-widest text-yellow-400">
           ZONE 7
@@ -153,21 +497,28 @@ export default function Zone7Page() {
             </h2>
 
             <div className="space-y-3">
-              {section.items.map(([name, price]) => (
+              {section.items.map((item) => (
                 <div
-                  key={name}
+                  key={`${section.category}-${item.name}-${item.price}`}
                   className="flex items-center justify-between gap-4 bg-zinc-950 border border-zinc-800 rounded-2xl p-4"
                 >
-                  <div>
-                    <h3 className="font-bold">{name}</h3>
-                    <p className="text-yellow-300 text-sm">
-                      UGX {price.toLocaleString()}
+                  <div className="pr-2">
+                    <h3 className="font-bold">{item.name}</h3>
+
+                    {item.description && (
+                      <p className="text-gray-400 text-sm mt-1 leading-relaxed">
+                        {item.description}
+                      </p>
+                    )}
+
+                    <p className="text-yellow-300 text-sm mt-2">
+                      UGX {item.price.toLocaleString()}
                     </p>
                   </div>
 
                   <button
-                    onClick={() => addItem(name, price)}
-                    className="bg-yellow-500 text-black font-black px-4 py-2 rounded-xl"
+                    onClick={() => addItem(item)}
+                    className="bg-yellow-500 text-black font-black px-4 py-2 rounded-xl shrink-0"
                   >
                     Add
                   </button>
@@ -184,15 +535,25 @@ export default function Zone7Page() {
             <p className="text-gray-400 text-sm">Cart is empty</p>
           ) : (
             cart.map((item) => (
-              <div key={item.name} className="flex justify-between items-center mb-2">
+              <div
+                key={item.name}
+                className="flex justify-between items-center mb-2"
+              >
                 <span className="text-sm">
                   {item.qty}× {item.name}
                 </span>
+
                 <div className="flex gap-2 items-center">
-                  <button onClick={() => changeQty(item.name, -1)} className="px-2 bg-zinc-800 rounded">
+                  <button
+                    onClick={() => changeQty(item.name, -1)}
+                    className="px-2 bg-zinc-800 rounded"
+                  >
                     −
                   </button>
-                  <button onClick={() => changeQty(item.name, 1)} className="px-2 bg-zinc-800 rounded">
+                  <button
+                    onClick={() => changeQty(item.name, 1)}
+                    className="px-2 bg-zinc-800 rounded"
+                  >
                     +
                   </button>
                 </div>
