@@ -222,6 +222,31 @@ const menu = [
         description: "Pepperoni, olives & mozzarella cheese.",
         price: 40000,
       },
+      {
+        name: "Additional Pizza Toppings 1",
+        description:"Vegetables/ Tomatoes/ Onions/ Green Pepper",
+        price: 7000,
+      },
+      {
+        name: "Additional Pizza Toppings 2",
+        description:"Cheese/ Mushroom/ Salami",
+        price: 5000,
+      },
+      {
+        name: "Additional pizza toppings 3",
+        description:"Pepper/ Broccoli/ Cougettes",
+        price: 3000,
+      },
+    ],
+  },
+  {
+    category: "Zone 7 Lunch Buffet",
+    item: [
+      {
+        name:"Continental Buffet & Free Water",
+        description:"12:30pm-3:00pm",
+        price: 30000,
+      },
     ],
   },
   {
