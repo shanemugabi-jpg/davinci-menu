@@ -241,7 +241,7 @@ const menu = [
   },
   {
     category: "Zone 7 Lunch Buffet",
-    item: [
+    items: [
       {
         name:"Continental Buffet & Free Water",
         description:"12:30pm-3:00pm",
@@ -543,6 +543,7 @@ export default function Zone7Page() {
   const [cart, setCart] = useState([]);
   const [table, setTable] = useState("");
   const [notes, setNotes] = useState("");
+const [search, setSearch] = useState("");
 
   const addItem = (item) => {
     setCart((prev) => {
@@ -569,6 +570,24 @@ export default function Zone7Page() {
   };
 
   const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const filteredMenu = menu
+  .map((section) => ({
+    ...section,
+    items: (section.items || []).filter((item) => {
+      const q = search.toLowerCase();
+
+      return (
+        section.category.toLowerCase().includes(q) ||
+        item.name.toLowerCase().includes(q) ||
+        (item.description || "").toLowerCase().includes(q)
+      );
+    }),
+  }))
+  .filter(
+    (section) =>
+      section.category.toLowerCase().includes(search.toLowerCase()) ||
+      section.items.length > 0
+  );
 
   const sendOrder = () => {
     if (!table.trim()) {
@@ -625,17 +644,29 @@ export default function Zone7Page() {
           placeholder="Example: Table 12"
           className="w-full rounded-xl px-4 py-4 bg-black border border-yellow-500 text-white outline-none"
         />
+            <div className="mt-4">
+  <label className="block text-yellow-400 font-bold mb-2">
+    Search Menu
+  </label>
+
+  <input
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    placeholder="Search food, drinks, category, ingredients..."
+    className="w-full rounded-xl px-4 py-4 bg-black border border-zinc-700 text-white outline-none"
+  />
+</div>
       </section>
 
       <section className="px-5 py-6">
-        {menu.map((section) => (
+          {filteredMenu.map((section) => (
           <div key={section.category} className="mb-8">
             <h2 className="text-2xl font-black text-yellow-400 mb-4">
               {section.category}
             </h2>
 
             <div className="space-y-3">
-              {section.items.map((item) => (
+              {(section.items || []).map((item) => (
                 <div
                   key={`${section.category}-${item.name}-${item.price}`}
                   className="flex items-center justify-between gap-4 bg-zinc-950 border border-zinc-800 rounded-2xl p-4"
@@ -714,6 +745,7 @@ export default function Zone7Page() {
           Send Order · UGX {total.toLocaleString()}
         </button>
       </section>
+          
     </main>
   );
 }
